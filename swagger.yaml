@@ -1,0 +1,156 @@
+---
+openapi: 3.0.0
+info:
+  description: Holidays for Iran
+  version: "1.0.0"
+  title: Timeoff
+
+tags:
+  - name: health
+    description: Is Timeoff up and running?
+  - name: holiday
+    description: Manipultaing holidays
+
+paths:
+  /healthz:
+    get:
+      responses:
+        204:
+          description: Timeoff is up and ruuning.
+      summary: Returns 204 with an empty body if Timeoff is up and running.
+      tags:
+        - health
+
+  /calendar/holidays:
+    get:
+      summary: Returns current holidays of iran.
+      description: Returns current holidays of iran.
+      responses:
+        '200':
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/responses/Holiday'
+      tags:
+        - holiday
+
+  /calendar/holiday:
+    post:
+      summary: Add a new holiday to the list of holidays.
+      description: Add a new holiday to the list of holidays.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Holiday'
+      responses:
+        '204':
+          description: holiday successfully added
+        '400':
+          description: bad request
+      tags:
+        - holiday
+
+  /calendar/is/holiday:
+    post:
+      summary: Checks if the provided dates are holidays in current year or not.
+      description: Checks if the provided dates are holidays in current year or not.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Date'
+      responses:
+        '204':
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/responses/HolidayCheck'
+        '400':
+          description: bad request
+      tags:
+        - holiday
+
+components:
+  schemas:
+    Holiday:
+      type: object
+        properties:
+          name:
+            type: string
+            example: "New Year"
+          type:
+            type: string
+            enum: [ "public", "religious", "bank", "other", "unknown" ]
+            example: "public"
+          month:
+            type: integer
+            format: int64
+            example: 1
+          day:
+            type: integer
+            format: int64
+            example: 1
+        required:
+          - name
+          - type
+          - month
+          - day
+    Date:
+      type: object
+        properties:
+          month:
+            type: integer
+            format: int64
+            example: 1
+          day:
+            type: integer
+            format: int64
+            example: 1
+        required:
+          - month
+          - day
+
+  responses:
+    Holiday:
+      description: List of holidays.
+      content:
+        application/josn:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                location:
+                  type: string
+                  example: "ir"
+                holidays:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/holiday'
+    HolidayCheck:
+      description: Result of the IsHoliday check for all provided dates.
+      content:
+        application/josn:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                month:
+                  type: integer
+                  format: int64
+                  example: 1
+                day:
+                  type: integer
+                  format: int64
+                  example: 1
+                is_holiday:
+                  type: boolean
+                  example: true

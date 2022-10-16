@@ -20,17 +20,18 @@ func main() {
 	echoEngine := echo.New()
 
 	baseCal := calendar.SetupBaseCalendar()
-	calHandler := handler.NewCalendarHandler(baseCal)
+	holidayHandler := handler.NewCalendarHandler(baseCal)
 
-	echoEngine.GET("/calendar/holidays", calHandler.GetHolidays)
-	echoEngine.POST("/calendar/holidays", calHandler.AddHolidays)
-	echoEngine.DELETE("/calendar/holidays", calHandler.RemoveHolidays)
+	echoEngine.GET("/calendar/holidays", holidayHandler.GetHolidays)
+	echoEngine.POST("/calendar/holiday", holidayHandler.AddHoliday)
+	echoEngine.PUT("/calendar/holiday", holidayHandler.UpdateHoliday)
+	echoEngine.DELETE("/calendar/holiday", holidayHandler.RemoveHoliday)
+
+	echoEngine.POST("/calendar/is/holiday", holidayHandler.IsHoliday)
 
 	echoEngine.GET("/healthz", func(c echo.Context) error { return c.NoContent(http.StatusNoContent) })
 
-	hijriEngine := calendar.NewHijriEngine(baseCal)
-	hijriEngine.AddReligiousHolidays()
-
+	hijriEngine := calendar.NewHolidayEngine(baseCal)
 	if err := hijriEngine.Start(); err != nil {
 		logrus.Fatalf("failed to start hijri engine: %s", err.Error())
 	}
