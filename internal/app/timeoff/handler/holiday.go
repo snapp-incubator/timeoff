@@ -7,9 +7,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/rickar/cal/v2"
 	"github.com/sirupsen/logrus"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/request"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/response"
 	ptime "github.com/yaa110/go-persian-calendar"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/request"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/response"
 )
 
 // CalendarHandler represents Calendar HTTP handler.

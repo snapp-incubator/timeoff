@@ -8,8 +8,8 @@ import (
 	"github.com/rickar/cal/v2"
 	"github.com/robfig/cron"
 	"github.com/sirupsen/logrus"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/locations/ir"
 	ptime "github.com/yaa110/go-persian-calendar"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/locations/ir"
 )
 
 type HolidayEngine struct {

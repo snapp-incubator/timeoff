@@ -10,9 +10,9 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/sirupsen/logrus"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/calendar"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/handler"
 	"github.com/spf13/cobra"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/calendar"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/handler"
 )
 
 // nolint:funlen,wrapcheck

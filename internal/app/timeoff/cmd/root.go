@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/cmd/server"
 	"github.com/spf13/cobra"
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/cmd/server"
 )
 
 // NewRootCommand creates a new timeoff root command.

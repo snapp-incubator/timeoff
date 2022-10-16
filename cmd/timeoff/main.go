@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/zeinababbasi/timeoff/internal/app/timeoff/cmd"
+	"github.com/snapp-incubator/timeoff/internal/app/timeoff/cmd"
 	_ "go.uber.org/automaxprocs"
 )
 

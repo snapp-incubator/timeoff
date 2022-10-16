@@ -1,4 +1,4 @@
-module github.com/zeinababbasi/timeoff
+module github.com/snapp-incubator/timeoff
 
 go 1.19
 
